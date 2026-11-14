@@ -1,0 +1,5 @@
+Nass is a space to share ideas, discover news, and take part in missions that help us move forward together.
+
+Explore the cards on the homepage, check mission progress, and join the forum. Each section is designed to make information easy to find.
+
+This summary is loaded directly from a TXT file. You can edit public/textos/en/inicio.txt and publish your changes on GitHub to update the content.

@@ -1,0 +1,5 @@
+Nass es un espacio para compartir ideas, descubrir noticias y participar en misiones que nos ayudan a avanzar juntos.
+
+Explora las tarjetas de la página principal, revisa el seguimiento de misiones y participa en el foro. Cada sección está pensada para que la información sea sencilla de encontrar.
+
+Este resumen se lee directamente desde un archivo TXT. Puedes editar public/textos/es/inicio.txt y publicar los cambios en GitHub para actualizar el contenido.
