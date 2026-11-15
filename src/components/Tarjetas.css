@@ -13,16 +13,11 @@
 }
 
 .cards.tarjetas-lectura {
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .tarjetas-lectura .tarjeta-lectura {
-  grid-column: span 2;
   transform: none;
-}
-
-.tarjetas-lectura .tarjeta-lectura:nth-child(n + 4) {
-  grid-column: span 3;
 }
 
 .tarjeta-encabezado {
@@ -52,10 +47,6 @@
 @media (max-width: 900px) {
   .cards.tarjetas-lectura {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .tarjetas-lectura .tarjeta-lectura:nth-child(n) {
-    grid-column: auto;
   }
 
   .tarjetas-lectura .tarjeta-lectura:last-child {

@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { ArrowLeft, ArrowRight, FolderOpen, Search } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
-import { misionesNASA } from './datosMisionesNASA';
+import { expedienteEagle } from './expedienteEagle';
+import { expedienteLRV } from './expedienteLRV';
+import { expedienteOpportunity } from './expedienteOpportunity';
 import { nivelesVoyager } from './nivelesVoyager';
 import { recursosVoyager } from './recursosVoyager';
 import './Expedientes.css';
@@ -12,14 +14,6 @@ const temas = [
   { id: 'marte' },
   { id: 'estrella', icono: '⭐' },
 ];
-
-const temasPorMision = {
-  'artemis-i': ['luna'],
-  'artemis-ii': ['luna'],
-  'artemis-iii': ['tierra', 'luna'],
-  'artemis-iv': ['luna'],
-  roman: ['estrella'],
-};
 
 const expedientes = [
   {
@@ -40,22 +34,9 @@ const expedientes = [
       alt: recursosVoyager[0].en.alt,
     },
   },
-  ...misionesNASA.filter(mision => Object.hasOwn(temasPorMision, mision.id))
-    .map(mision => ({ ...mision, temas: temasPorMision[mision.id], foto: true })),
-  {
-    id: 'exploracion-marte',
-    nombre: 'Exploración de Marte',
-    temas: ['marte'],
-    es: {
-      resumen: 'Conoce el planeta rojo y qué buscan los vehículos que exploran su superficie.',
-      avance: 'Los vehículos robóticos estudian las rocas y el suelo marcianos para entender cómo era Marte en el pasado y si pudo tener agua líquida en su superficie.',
-    },
-    en: {
-      nombre: 'Mars exploration',
-      resumen: 'Get to know the red planet and what robotic rovers look for on its surface.',
-      avance: 'Robotic rovers study Martian rocks and soil to learn what Mars was like in the past and whether liquid water could have existed on its surface.',
-    },
-  },
+  expedienteLRV,
+  { ...expedienteEagle, temas: [...new Set([...expedienteEagle.temas, 'tierra'])] },
+  expedienteOpportunity,
 ];
 
 function DibujoTema({ tema }) {
@@ -73,10 +54,9 @@ const textos = {
     ver: 'Ver más',
     volver: 'Volver a expedientes',
     nivel: 'Nivel',
-    proximamente: 'Próximamente',
     recursos: 'Recursos para seguir explorando',
     niveles: ['Resumen', 'Exploración y avances'],
-    nivelesVoyager: ['Rápido', 'Básico'],
+    nivelesLectura: ['Rápido', 'Básico'],
     estados: { completada: 'Completada', preparacion: 'En preparación', prevista: 'Prevista', activa: 'Activa' },
   },
   en: {
@@ -87,10 +67,9 @@ const textos = {
     ver: 'See more',
     volver: 'Back to case files',
     nivel: 'Level',
-    proximamente: 'Coming soon',
     recursos: 'Resources to keep exploring',
     niveles: ['Overview', 'Exploration and progress'],
-    nivelesVoyager: ['Quick', 'Basic'],
+    nivelesLectura: ['Quick', 'Basic'],
     estados: { completada: 'Completed', preparacion: 'In preparation', prevista: 'Planned', activa: 'Active' },
   },
 };
@@ -103,7 +82,9 @@ function Definiciones({ entradas }) {
       {entradas.map(([termino, definicion]) => (
         <div key={termino}>
           <dt>{termino}</dt>
-          <dd>{definicion}</dd>
+          <dd>{Array.isArray(definicion) ? (
+            <ul>{definicion.map(punto => <li key={punto}>{punto}</li>)}</ul>
+          ) : definicion}</dd>
         </div>
       ))}
     </dl>
@@ -113,13 +94,18 @@ function Definiciones({ entradas }) {
 function LecturaExpediente({ apartados }) {
   return (
     <div className="expediente-lectura">
-      {apartados.map(({ titulo, parrafos, listas, definiciones }, indice) => (
+      {apartados.map(({ titulo, introduccion, parrafos, listas, definiciones }, indice) => (
         <section key={titulo}>
           <h3>{indice + 1}. {titulo}</h3>
+          {introduccion && <p>{introduccion}</p>}
           {listas?.map(lista => (
             <div key={lista.titulo}>
-              <h4>{lista.titulo}</h4>
-              <ul>{lista.puntos.map(punto => <li key={punto}>{punto}</li>)}</ul>
+              {lista.titulo && <h4>{lista.titulo}</h4>}
+              {lista.ordenada ? (
+                <ol>{lista.puntos.map(punto => <li key={punto}>{punto}</li>)}</ol>
+              ) : (
+                <ul>{lista.puntos.map(punto => <li key={punto}>{punto}</li>)}</ul>
+              )}
             </div>
           ))}
           {parrafos?.map(parrafo => <p key={parrafo}>{parrafo}</p>)}
@@ -133,12 +119,15 @@ function LecturaExpediente({ apartados }) {
 function DetalleExpediente({ expediente, idioma, texto }) {
   const ficha = expediente[idioma];
   const niveles = expediente.niveles?.[idioma];
-  const titulos = niveles ? texto.nivelesVoyager : texto.niveles;
+  const titulos = niveles ? texto.nivelesLectura : texto.niveles;
   const contenido = [
     niveles ? <Definiciones entradas={niveles.ficha} /> : <p>{ficha.resumen}</p>,
-    niveles ? <LecturaExpediente apartados={niveles.lectura} /> : <p>{ficha.avance}</p>,
-    <p>{texto.proximamente}</p>,
-    <p>{texto.proximamente}</p>,
+    niveles ? (
+      <>
+        {niveles.publico && <p>{niveles.publico}</p>}
+        <LecturaExpediente apartados={niveles.lectura} />
+      </>
+    ) : <p>{ficha.avance}</p>,
   ];
 
   return (
@@ -154,11 +143,12 @@ function DetalleExpediente({ expediente, idioma, texto }) {
         ))}
         {expediente.recursos && (
           <section className="panel expediente-nivel">
-            <h2>{texto.nivel} 5 · {texto.recursos}</h2>
+            <h2>{texto.nivel} {contenido.length + 1} · {ficha.tituloRecursos ?? texto.recursos}</h2>
+            {ficha.subtituloRecursos && <p>{ficha.subtituloRecursos}</p>}
             <div className="expedientes-tarjetas">
               {expediente.recursos.map(recurso => (
                 <article className="panel expediente-tarjeta" key={recurso.id}>
-                  <img src={recurso.imagen} alt={recurso[idioma].alt} loading="lazy" />
+                  {recurso.imagen && <img src={recurso.imagen} alt={recurso[idioma].alt} loading="lazy" />}
                   <div className="expediente-contenido">
                     <h3>{recurso.nombre}</h3>
                     <p>{recurso[idioma].resumen}</p>
