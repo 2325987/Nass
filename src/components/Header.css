@@ -1,0 +1,38 @@
+.nav-foro {
+  position: relative;
+}
+
+.nav-foro > button {
+  border: 0;
+  background: transparent;
+  width: 100%;
+}
+
+.nav-foro > button svg:last-child {
+  display: block;
+}
+
+.nav-foro-opciones {
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  left: 0;
+  min-width: max-content;
+  padding: 6px;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 12px 25px #173e5625;
+}
+
+html[data-theme=dark] .nav-foro-opciones {
+  background: #1b3443;
+}
+
+@media (max-width: 700px) {
+  .nav-foro-opciones {
+    position: static;
+    margin-inline-start: 16px;
+    padding-block: 0;
+    box-shadow: none;
+  }
+}
