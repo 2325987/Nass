@@ -1,0 +1,140 @@
+.noticias {
+  --noticias-borde: #d9e4ea;
+  --noticias-texto-secundario: #4e6374;
+  --noticias-enlace: #096961;
+  max-width: 1180px;
+}
+
+[data-theme='dark'] .noticias {
+  --noticias-borde: #46616d;
+  --noticias-texto-secundario: #c1d4da;
+  --noticias-enlace: #a0f0dd;
+}
+
+.noticias-evento {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  overflow: hidden;
+  border-radius: 20px;
+  color: #fff;
+  background: #111b3a;
+}
+
+.noticias-evento img {
+  display: block;
+  width: 100%;
+  height: auto;
+  align-self: center;
+}
+
+.noticias-evento-texto {
+  align-self: center;
+  padding: clamp(22px, 4vw, 48px);
+}
+
+.noticias-evento h2 {
+  font-size: clamp(1.75rem, 3vw, 2.6rem);
+  line-height: 1.1;
+  margin: 12px 0 16px;
+}
+
+.noticias-evento p,
+.noticias-intro p,
+.noticias-curso p {
+  line-height: 1.6;
+  margin: 0 0 16px;
+}
+
+.noticias-evento .noticias-fecha {
+  color: #b2f5e6;
+  font-weight: 750;
+  margin: 0;
+}
+
+.noticias-cursos,
+.noticias-proximamente {
+  margin-top: 48px;
+}
+
+.noticias-intro {
+  max-width: 68ch;
+  margin-bottom: 24px;
+}
+
+.noticias-intro h2 {
+  margin: 0 0 10px;
+}
+
+.noticias-intro p,
+.noticias-curso p,
+.noticias-curso small {
+  color: var(--noticias-texto-secundario);
+}
+
+.noticias-cuadricula {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 245px), 1fr));
+  gap: 18px;
+}
+
+.noticias-curso {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--panel, #fff);
+  border: 1px solid var(--noticias-borde);
+  border-radius: 15px;
+}
+
+.noticias-curso img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 5 / 3;
+  object-fit: cover;
+  background: #192f52;
+}
+
+.noticias-curso-texto {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1;
+  padding: 18px;
+}
+
+.noticias-curso h3 {
+  font-size: 1.15rem;
+  line-height: 1.25;
+  margin: 6px 0 9px;
+}
+
+.noticias-enlace {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--noticias-enlace);
+  font-weight: 750;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.noticias-curso .noticias-enlace {
+  margin-top: auto;
+}
+
+.noticias-proximamente {
+  min-height: 154px;
+  padding: 24px;
+  border: 2px dashed var(--noticias-borde);
+  border-radius: 15px;
+}
+
+.noticias-proximamente h2 {
+  margin: 0;
+}
+
+@media (max-width: 710px) {
+  .noticias-evento {
+    grid-template-columns: 1fr;
+  }
+}

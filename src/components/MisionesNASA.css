@@ -1,0 +1,178 @@
+.nasa-misiones {
+  margin-top: 2.5rem;
+}
+
+.nasa-misiones h2 {
+  margin: 0 0 1rem;
+}
+
+.nasa-misiones-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.panel.nasa-mision {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden;
+}
+
+.nasa-mision-imagen {
+  margin: 0;
+}
+
+.nasa-mision-imagen img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background: #142f44;
+}
+
+.nasa-mision-imagen figcaption {
+  font-size: .78rem;
+  padding: .45rem 1.25rem 0;
+  color: #53677a;
+}
+
+.nasa-mision-contenido {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1rem 1.25rem 1.25rem;
+}
+
+.nasa-mision-contenido h3 {
+  font-size: 1.35rem;
+  margin: .65rem 0 .25rem;
+}
+
+.nasa-mision-contenido p {
+  line-height: 1.55;
+  margin: 0 0 .8rem;
+}
+
+.nasa-mision-fecha {
+  font-size: .9rem;
+  font-weight: 600;
+  color: #53677a;
+}
+
+.nasa-mision-estado {
+  border-radius: 99px;
+  background: #e7eef9;
+  color: #244a7a;
+  padding: .25rem .65rem;
+  font-size: .8rem;
+  font-weight: 700;
+}
+
+.nasa-estado-completada,
+.nasa-estado-activa {
+  background: #ddf2e9;
+  color: #13604b;
+}
+
+.nasa-mision-fuente,
+.nasa-mision-trayectoria summary {
+  color: #087369;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: .2em;
+}
+
+.nasa-mision-fuente {
+  margin-top: auto;
+}
+
+.nasa-mision-trayectoria {
+  width: 100%;
+  margin: 0 0 .9rem;
+}
+
+.nasa-mision-trayectoria summary {
+  cursor: pointer;
+}
+
+.nasa-mision-trayectoria img {
+  display: block;
+  width: 100%;
+  margin: .6rem 0 .25rem;
+}
+
+.nasa-mision-trayectoria span {
+  font-size: .8rem;
+}
+
+[data-theme='dark'] .nasa-mision-fecha,
+[data-theme='dark'] .nasa-mision-imagen figcaption {
+  color: #bbcbd7;
+}
+
+[data-theme='dark'] .nasa-mision-fuente,
+[data-theme='dark'] .nasa-mision-trayectoria summary {
+  color: #91eed7;
+}
+
+@media (max-width: 650px) {
+  .nasa-misiones-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.nasa-mision-imagen .nasa-imagen-dragonfly {
+  object-position: right center;
+}
+
+.nasa-avance > h2 {
+  margin: 0 0 1rem;
+}
+
+.nasa-avance label {
+  display: block;
+  margin: .7rem 0 .35rem;
+  font-weight: 650;
+}
+
+.nasa-avance input[type='search'],
+.nasa-avance select {
+  display: block;
+  width: 100%;
+  max-width: 36rem;
+}
+
+.nasa-avance-etapas {
+  margin-top: 1.25rem;
+}
+
+.nasa-fase-actual {
+  font-size: 1.05rem;
+}
+
+.nasa-avance input[type='range'] {
+  width: 100%;
+  padding: 0;
+  margin: .25rem 0 1rem;
+  accent-color: #08796e;
+  cursor: pointer;
+}
+
+.nasa-avance-detalle {
+  border-inline-start: 4px solid #08796e;
+  padding: .3rem 0 .3rem 1rem;
+}
+
+.nasa-avance-detalle h3 {
+  margin: .6rem 0 .25rem;
+}
+
+.nasa-avance-detalle p {
+  margin: 0;
+}
+
+.panel-progreso-personal {
+  margin-top: 2.5rem;
+}
