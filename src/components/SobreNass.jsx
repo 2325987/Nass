@@ -1,4 +1,3 @@
-import { Lightbulb } from 'lucide-react';
 import Txt from './Txt';
 import './SobreNass.css';
 
@@ -10,10 +9,11 @@ export default function SobreNass({ lang }) {
       </h2>
 
       <div className="sobre-nass-columnas">
-        <div className="sobre-nass-recuadro" aria-hidden="true">
-          <Lightbulb size={58} />
-          <span>NASS</span>
-        </div>
+        <img
+          className="sobre-nass-imagen"
+          src={`${import.meta.env.BASE_URL}imagenes/sonda-nass.png`}
+          alt={lang === 'es' ? 'Sonda espacial sobre la Tierra' : 'Space probe above Earth'}
+        />
 
         <Txt file="inicio" lang={lang} />
       </div>

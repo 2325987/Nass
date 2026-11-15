@@ -39,6 +39,13 @@
   line-height: 1.65;
 }
 
+.sobre-nass-imagen {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+}
+
 @media (max-width: 700px) {
   .sobre-nass-columnas {
     grid-template-columns: 1fr;
