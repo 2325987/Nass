@@ -16,11 +16,11 @@ export default function SobreNass({ lang }) {
         />
 
         <div className="sobre-nass-texto">
-          <h2 className="sobre-nass-subtitulo">
+          <h3 className="sobre-nass-subtitulo">
             {lang === 'es'
               ? 'Explorar el universo también significa descubrir las historias que deja atrás'
               : 'Exploring the universe also means discovering the stories it leaves behind'}
-          </h2>
+          </h3>
 
           <Txt file="inicio" lang={lang} />
         </div>

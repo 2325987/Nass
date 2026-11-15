@@ -30,7 +30,14 @@ Página web creada con React + Vite. Incluye portada con carrusel, logo, tarjeta
 
 El flujo **Publicar Nass** instala las dependencias con `npm ci`, compila el proyecto con Vite y publica la carpeta `dist`. Conserve `package-lock.json` en el repositorio. Si Pages ya está configurado, puede iniciar el flujo desde **Actions > Publicar Nass > Run workflow > main**. Las secciones usan rutas como `/#/noticias` para que se puedan abrir y recargar directamente en GitHub Pages.
 
-## Importante: límites de la primera versión
-Las misiones, las cuentas, los mensajes del foro y las sugerencias se guardan en `localStorage`, exclusivamente en el navegador y dispositivo donde se introducen. **No existe una base de datos compartida** y los visitantes no verán los mensajes de otros dispositivos. Las contraseñas del registro de demostración se guardan localmente sin seguridad de producción; **no utilice contraseñas reales ni información personal sensible**. Antes de lanzar un foro o registro real, conecte un servicio de autenticación y una base de datos segura (por ejemplo Supabase) y aplique reglas de acceso.
+## Registro y foro con base de datos local
 
-GitHub Pages aloja archivos estáticos y no puede ejecutar por sí solo una base de datos o backend. Los archivos TXT se actualizan al editarlos y volver a publicar el repositorio.
+IndexedDB crea la base `nass-local` al abrir el sitio desde GitHub Pages mediante HTTPS o desde Vite en localhost. No requiere importar SQL ni configurar un servidor.
+
+1. Abra **Registro / Ingreso**, seleccione **Registrarse** y cree un usuario de prueba.
+2. Se abrirá el foro. Publique un mensaje, recargue la página y compruebe que el mensaje y la sesión siguen guardados.
+3. Regrese a **Registro / Ingreso** y pulse **Salir**. En el foro volverá a aparecer el enlace para iniciar sesión.
+
+Las contraseñas nuevas se almacenan como hashes PBKDF2 con sal. La primera vez que abre esta versión, Nass migra las cuentas, la sesión y los mensajes previos del mismo navegador, si existen. Las misiones, los ajustes y las sugerencias conservan su almacenamiento anterior.
+
+Las cuentas, las sesiones y los mensajes pertenecen al navegador, perfil y dirección usados. Un registro en localhost no aparece en GitHub Pages. Otros visitantes no ven sus publicaciones y borrar los datos del sitio borra también la base. Para un foro compartido se requiere un servicio externo.
