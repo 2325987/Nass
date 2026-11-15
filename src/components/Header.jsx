@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { Home, Flag, MessageCircle, Newspaper, UserRound, Settings, Menu, X } from 'lucide-react';
+import { Home,
+   Flag,
+    MessageCircle,
+     Newspaper,
+      UserRound,
+       Settings,
+        Menu, X } from 'lucide-react';
 
 export default function Header({ t, abrirAjustes }) {
   const [mobile, setMobile] = useState(false);

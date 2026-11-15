@@ -1,5 +1,11 @@
-Nass is a space to share ideas, discover news, and take part in missions that help us move forward together.
+NASS-NEVER ABANDONED SPACE STORIES
 
-Explore the cards on the homepage, check mission progress, and join the forum. Each section is designed to make information easy to find.
+Exploring the universe also means discovering the stories it leaves behind
 
-This summary is loaded directly from a TXT file. You can edit public/textos/en/inicio.txt and publish your changes on GitHub to update the content.
+Scientific exploration leaves much more than discoveries. It also leaves behind machines, instruments, and technologies that made it possible to go further, understand our planet, and explore other worlds.
+
+But what happens to that equipment when their missions end? What discoveries did they make possible? Where are they now? And what mysteries remain unsolved?
+
+NASS is more than an archive: it is a space where you can also be part of the stories left by space exploration.
+
+Here you can discover, learn, and investigate the traces of scientific missions, get to know the legacy of their technologies, share ideas, and get closer to the questions that are still waiting for answers.
