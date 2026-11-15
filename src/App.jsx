@@ -19,7 +19,7 @@ function HomePage({ t, lang }) {
     <>
       <Carrusel t={t}/>
       <SobreNass lang={lang}/>
-      <Tarjetas t={t}/>
+      <Tarjetas lang={lang}/>
     </>
   );
 }

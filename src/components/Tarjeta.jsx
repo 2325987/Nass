@@ -1,13 +1,13 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-
-export default function Tarjeta({ url, icono, titulo, descripcion, color, leerMas }) {
+export default function Tarjeta({ Imagen, titulo, descripcion, color }) {
   return (
-    <Link className="feature-card" to={url}>
-      <span className={'card-icon ' + color}>{icono}</span>
-      <h3>{titulo}</h3>
+    <article className="feature-card tarjeta-lectura">
+      <div className="tarjeta-encabezado">
+        <h3>{titulo}</h3>
+        <span className={'card-icon ' + color} aria-hidden="true">
+          <Imagen size={22} />
+        </span>
+      </div>
       <p>{descripcion}</p>
-      <span className="card-link">{leerMas} →</span>
-    </Link>
+    </article>
   );
 }
