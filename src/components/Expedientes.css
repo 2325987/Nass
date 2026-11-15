@@ -195,3 +195,42 @@ html[data-theme=dark] .expediente-estado {
     grid-template-columns: 1fr;
   }
 }
+
+.expediente-definiciones {
+  display: grid;
+  gap: .65rem;
+  max-width: 74ch;
+  margin: .9rem 0 0;
+}
+
+.expediente-definiciones dt {
+  font-weight: 700;
+}
+
+.expediente-definiciones dd {
+  margin: .2rem 0 0;
+  line-height: 1.55;
+}
+
+.expediente-lectura {
+  display: grid;
+  gap: 1.1rem;
+  max-width: 74ch;
+}
+
+.expediente-lectura section {
+  display: grid;
+  gap: .65rem;
+}
+
+.expediente-lectura h3,
+.expediente-lectura h4,
+.expediente-lectura ul,
+.expediente-lectura .expediente-definiciones {
+  margin: 0;
+}
+
+.expediente-lectura ul {
+  padding-inline-start: 1.35rem;
+  line-height: 1.55;
+}

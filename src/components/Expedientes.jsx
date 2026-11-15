@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ArrowLeft, ArrowRight, FolderOpen, Search } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
 import { misionesNASA } from './datosMisionesNASA';
+import { nivelesVoyager } from './nivelesVoyager';
 import { recursosVoyager } from './recursosVoyager';
 import './Expedientes.css';
 
@@ -27,6 +28,7 @@ const expedientes = [
     temas: ['estrella'],
     imagen: recursosVoyager[0].imagen,
     recursos: recursosVoyager,
+    niveles: nivelesVoyager,
     es: {
       resumen: 'Sonda de la NASA lanzada el 5 de septiembre de 1977 para explorar Júpiter y Saturno. Hoy viaja por el espacio interestelar.',
       avance: 'Voyager 1 observó los planetas, sus lunas y sus anillos. El 25 de agosto de 2012 cruzó la heliopausa y se convirtió en el primer objeto construido por el ser humano en entrar al espacio interestelar.',
@@ -74,6 +76,7 @@ const textos = {
     proximamente: 'Próximamente',
     recursos: 'Recursos para seguir explorando',
     niveles: ['Resumen', 'Exploración y avances'],
+    nivelesVoyager: ['Rápido', 'Básico'],
     estados: { completada: 'Completada', preparacion: 'En preparación', prevista: 'Prevista', activa: 'Activa' },
   },
   en: {
@@ -87,24 +90,66 @@ const textos = {
     proximamente: 'Coming soon',
     recursos: 'Resources to keep exploring',
     niveles: ['Overview', 'Exploration and progress'],
+    nivelesVoyager: ['Quick', 'Basic'],
     estados: { completada: 'Completed', preparacion: 'In preparation', prevista: 'Planned', activa: 'Active' },
   },
 };
 
 const normalizar = texto => texto.toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, '');
 
+function Definiciones({ entradas }) {
+  return (
+    <dl className="expediente-definiciones">
+      {entradas.map(([termino, definicion]) => (
+        <div key={termino}>
+          <dt>{termino}</dt>
+          <dd>{definicion}</dd>
+        </div>
+      ))}
+    </dl>
+  );
+}
+
+function LecturaExpediente({ apartados }) {
+  return (
+    <div className="expediente-lectura">
+      {apartados.map(({ titulo, parrafos, listas, definiciones }, indice) => (
+        <section key={titulo}>
+          <h3>{indice + 1}. {titulo}</h3>
+          {listas?.map(lista => (
+            <div key={lista.titulo}>
+              <h4>{lista.titulo}</h4>
+              <ul>{lista.puntos.map(punto => <li key={punto}>{punto}</li>)}</ul>
+            </div>
+          ))}
+          {parrafos?.map(parrafo => <p key={parrafo}>{parrafo}</p>)}
+          {definiciones && <Definiciones entradas={definiciones} />}
+        </section>
+      ))}
+    </div>
+  );
+}
+
 function DetalleExpediente({ expediente, idioma, texto }) {
   const ficha = expediente[idioma];
+  const niveles = expediente.niveles?.[idioma];
+  const titulos = niveles ? texto.nivelesVoyager : texto.niveles;
+  const contenido = [
+    niveles ? <Definiciones entradas={niveles.ficha} /> : <p>{ficha.resumen}</p>,
+    niveles ? <LecturaExpediente apartados={niveles.lectura} /> : <p>{ficha.avance}</p>,
+    <p>{texto.proximamente}</p>,
+    <p>{texto.proximamente}</p>,
+  ];
 
   return (
     <div className="page section expedientes">
       <Link className="expedientes-volver" to="/expedientes"><ArrowLeft size={18} />{texto.volver}</Link>
       <div className="page-title"><FolderOpen /><h1>{ficha.nombre ?? expediente.nombre}</h1></div>
       <div className="expedientes-niveles">
-        {[ficha.resumen, ficha.avance, texto.proximamente, texto.proximamente].map((contenido, indice) => (
+        {contenido.map((nivel, indice) => (
           <section className="panel expediente-nivel" key={indice}>
-            <h2>{texto.nivel} {indice + 1}{texto.niveles[indice] && ` · ${texto.niveles[indice]}`}</h2>
-            <p>{contenido}</p>
+            <h2>{texto.nivel} {indice + 1}{titulos[indice] && ` · ${titulos[indice]}`}</h2>
+            {nivel}
           </section>
         ))}
         {expediente.recursos && (
