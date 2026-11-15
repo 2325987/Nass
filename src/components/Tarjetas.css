@@ -1,0 +1,7 @@
+.section.tarjetas-inicio {
+  padding-block-start: 20px;
+}
+
+.tarjetas-inicio .section-heading h2 {
+  margin-top: 0;
+}

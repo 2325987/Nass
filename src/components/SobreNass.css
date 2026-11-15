@@ -1,0 +1,50 @@
+.section.sobre-nass {
+  padding-block: 32px 16px;
+}
+
+.sobre-nass .sobre-nass-titulo {
+  margin: 0 0 26px;
+  text-align: center;
+  font-size: clamp(1.45rem, 3vw, 2.2rem);
+  line-height: 1.2;
+  letter-spacing: 0.03em;
+}
+
+.sobre-nass-columnas {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+  align-items: start;
+  gap: clamp(24px, 4vw, 55px);
+}
+
+.sobre-nass-recuadro {
+  display: flex;
+  min-height: 225px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  border-radius: 20px;
+  background: linear-gradient(140deg, #173e56, #0a887b);
+  color: #b1f4db;
+}
+
+.sobre-nass-recuadro span {
+  font-size: 2.65rem;
+  font-weight: 850;
+  letter-spacing: 0.17em;
+}
+
+.sobre-nass .txt-content {
+  line-height: 1.65;
+}
+
+@media (max-width: 700px) {
+  .sobre-nass-columnas {
+    grid-template-columns: 1fr;
+  }
+
+  .sobre-nass-recuadro {
+    min-height: 175px;
+  }
+}

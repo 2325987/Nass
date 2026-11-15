@@ -1,6 +1,7 @@
 import React from 'react';
 import { Flag, MessageCircle, Newspaper, UserRound } from 'lucide-react';
 import Tarjeta from './Tarjeta';
+import './Tarjetas.css';
 
 export default function Tarjetas({ t }) {
   const tarjetas = [
@@ -11,9 +12,8 @@ export default function Tarjetas({ t }) {
   ];
 
   return (
-    <section className="section">
+    <section className="section tarjetas-inicio">
       <div className="section-heading">
-        <span className="eyebrow dark">NASS</span>
         <h2>{t.cards}</h2>
       </div>
       <div className="cards">
