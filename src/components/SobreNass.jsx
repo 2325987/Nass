@@ -8,17 +8,13 @@ export default function SobreNass({ lang }) {
         NASS – NEVER ABANDONED SPACE STORIES
       </h2>
 
-      <h6 id="titulo-sobre-nass" className="sobre-nass-titulo">
+       <h6 id="titulo-sobre-nass" className="sobre-nass-titulo">
         Explorar el universo también significa descubrir las historias que deja atrás
       </h6>
-
-      
-
       <div className="sobre-nass-columnas">
         <img
           className="sobre-nass-imagen"
-          src={`${import.meta.env.BASE_URL}imagenes/
-          Logo_NASS.png`}
+          src={`${import.meta.env.BASE_URL}imagenes/sonda-espacial obitando la Tierra.jpg`}
           alt={lang === 'es' ? 'Sonda espacial sobre la Tierra' : 'Space probe above Earth'}
         />
 
