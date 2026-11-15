@@ -28,7 +28,7 @@ Página web creada con React + Vite. Incluye portada con carrusel, logo, tarjeta
 6. Su dirección será `https://USUARIO.github.io/Nass/`.
 7. Espere a que la acción termine correctamente en la pestaña Actions.
 
-**Nota:** el flujo de GitHub Actions instala las dependencias automáticamente. Si ejecuta `npm install` localmente, también puede subir el archivo `package-lock.json` generado.
+El flujo **Publicar Nass** instala las dependencias con `npm ci`, compila el proyecto con Vite y publica la carpeta `dist`. Conserve `package-lock.json` en el repositorio. Si Pages ya está configurado, puede iniciar el flujo desde **Actions > Publicar Nass > Run workflow > main**. Las secciones usan rutas como `/#/noticias` para que se puedan abrir y recargar directamente en GitHub Pages.
 
 ## Importante: límites de la primera versión
 Las misiones, las cuentas, los mensajes del foro y las sugerencias se guardan en `localStorage`, exclusivamente en el navegador y dispositivo donde se introducen. **No existe una base de datos compartida** y los visitantes no verán los mensajes de otros dispositivos. Las contraseñas del registro de demostración se guardan localmente sin seguridad de producción; **no utilice contraseñas reales ni información personal sensible**. Antes de lanzar un foro o registro real, conecte un servicio de autenticación y una base de datos segura (por ejemplo Supabase) y aplique reglas de acceso.
